@@ -1,0 +1,314 @@
+
+{
+  
+"professor": [
+      {
+        "id": "1",
+        "name": "Andreas",
+        "surname": "Komninos",
+        "email": "akomninos@ceid.upatras.gr",
+        "topic": "Network-centric systems",
+        "landline": "2610996915",
+        "mobile": "6977998877",
+        "department": "CEID",
+        "university": "University of Patras"
+      },
+      {
+        "id": "7",
+        "name": "Vasilis",
+        "surname": "Foukaras",
+        "email": "vasfou@ceid.upatras.gr",
+        "topic": "Integrated Systems",
+        "landline": "2610885511",
+        "mobile": "6988812345",
+        "department": "CEID",
+        "university": "University of Patras"
+      },
+      {
+        "id": "8",
+        "name": "Basilis",
+        "surname": "Karras",
+        "email": "karras@nterti.com",
+        "topic": "Artificial Intelligence",
+        "landline": "23",
+        "mobile": "545",
+        "department": "CEID",
+        "university": "University of Patras"
+      },
+      {
+        "id": "9",
+        "name": "Eleni",
+        "surname": "Voyiatzaki",
+        "email": "eleni@ceid.gr",
+        "topic": "WEB",
+        "landline": "34",
+        "mobile": "245",
+        "department": "CEID",
+        "university": "University of Patras"
+      },
+      {
+        "id": "10",
+        "name": "Andrew",
+        "surname": "Hozier Byrne",
+        "email": "hozier@ceid.upatras.gr",
+        "topic": "Artificial Intelligence",
+        "landline": "2610170390",
+        "mobile": "6917031990",
+        "department": "CEID",
+        "university": "University of Patras"
+      },
+      {
+        "id": "11",
+        "name": "Nikos",
+        "surname": "Korobos",
+        "email": "nikos.korobos12@gmail.com",
+        "topic": "Data Engineering",
+        "landline": "2610324365",
+        "mobile": "6978530352",
+        "department": "IT",
+        "university": "University of Patras"
+      },
+      {
+        "id": "12",
+        "name": "Kostas",
+        "surname": "Karanikolos",
+        "email": "kostkaranik@gmail.com",
+        "topic": "informatics",
+        "landline": "2610324242",
+        "mobile": "6934539920",
+        "department": "CEID",
+        "university": "University of Patras"
+      },
+      {
+        "id": "13",
+        "name": "Mpampis",
+        "surname": "Sougias",
+        "email": "mpampis123@gmail.com",
+        "topic": "Arxeologia",
+        "landline": "2610945934",
+        "mobile": "6947845334",
+        "department": "Arxeologias",
+        "university": "UOI"
+      },
+      {
+        "id": "14",
+        "name": "Daskalos",
+        "surname": "Makaveli",
+        "email": "makavelibet@gmail.com",
+        "topic": "Business",
+        "landline": "2310231023",
+        "mobile": "6929349285",
+        "department": "Economics",
+        "university": "UOA"
+      },
+      {
+        "id": "15",
+        "name": "Maria",
+        "surname": "Palami",
+        "email": "palam@upatras.gr",
+        "topic": "SQL injections",
+        "landline": "1234567890",
+        "mobile": "6988223322",
+        "department": "Engineering",
+        "university": "University of SKG"
+      },
+      {
+        "id": "16",
+        "name": "Meni",
+        "surname": "Talaiporimeni",
+        "email": "meniT@upatras.gr",
+        "topic": "t",
+        "landline": "2610333999",
+        "mobile": "6999990999",
+        "department": "CEID",
+        "university": "UoP"
+      },
+      {
+        "id": "17",
+        "name": "Tzouli",
+        "surname": "Alexandratou",
+        "email": "tzouli.ax@upatras.gr",
+        "topic": "Big Data",
+        "landline": "2264587412",
+        "mobile": "6996116921",
+        "department": "CEID",
+        "university": "University of Patras"
+      },
+      {
+        "id": "18",
+        "name": "Karikhs",
+        "surname": "Raftel",
+        "email": "karikhs@yahoo.gr",
+        "topic": "Pharmaceutical Drugs",
+        "landline": "69",
+        "mobile": "6945258923",
+        "department": "Chemistry",
+        "university": "University of Streets"
+      },
+      {
+        "id": "19",
+        "name": "Vlasis",
+        "surname": "Restas",
+        "email": "toxrusoftiari@funerals.gr",
+        "topic": "Nekro8aftiki",
+        "landline": "78696910",
+        "mobile": "69696964",
+        "department": "Nekro8aftikis",
+        "university": "University Of Ohio"
+      },
+      {
+        "id": "20",
+        "name": "Fat ",
+        "surname": "Banker",
+        "email": "fatbanker@kapitalas.gr",
+        "topic": "kippah",
+        "landline": "6942014121",
+        "mobile": "6969784205",
+        "department": "Froutemporiki",
+        "university": "University of Israel"
+      },
+      {
+        "id": "21",
+        "name": "Hamze",
+        "surname": "Mohamed",
+        "email": "info@hamzat.gr",
+        "topic": "Logistics",
+        "landline": "1245789513",
+        "mobile": "1456983270",
+        "department": "Social Rehabitation",
+        "university": "University of UAE"
+      },
+      {
+        "id": "22",
+        "name": "Stefania",
+        "surname": "Nikolaou",
+        "email": "snikolaou@upatras.gr",
+        "topic": "Information Theory",
+        "landline": "2106723456",
+        "mobile": "6942323452",
+        "department": "ECE",
+        "university": "University of Patras"
+      },
+      {
+        "id": "23",
+        "name": "Petros",
+        "surname": "Danezis",
+        "email": "pdanezis@upatras.gr",
+        "topic": "Telecommunication Electronics",
+        "landline": "2610908888",
+        "mobile": "6971142424",
+        "department": "ECE",
+        "university": "University of Patras\t"
+      },
+      {
+        "id": "24",
+        "name": "Papadopoulos ",
+        "surname": "Eustathios",
+        "email": "eustratiospap@gmail.com",
+        "topic": "Physics",
+        "landline": "210-1234567",
+        "mobile": "690-1234567",
+        "department": "Physics",
+        "university": "National and Kapodistrian University of Athens"
+      },
+      {
+        "id": "25",
+        "name": "Konstantinou",
+        "surname": "Maria",
+        "email": "mariakon@gmail.com",
+        "topic": "Statistics and Probability",
+        "landline": "2310-7654321",
+        "mobile": "694-7654321",
+        "department": "Mathematics",
+        "university": "Aristotle University of Thessaloniki"
+      },
+      {
+        "id": "26",
+        "name": "Jim",
+        "surname": "Nikolaou",
+        "email": "jimnik@gmail.com",
+        "topic": "Artificial Intelligence",
+        "landline": "2610-9876543",
+        "mobile": "697-9876543",
+        "department": "Computer Science",
+        "university": "University of Patras"
+      },
+      {
+        "id": "27",
+        "name": "Sophia",
+        "surname": "Michailidi",
+        "email": "sophiamich@gmail.com",
+        "topic": "Economic Theory",
+        "landline": "2310-5432109",
+        "mobile": "698-5432109",
+        "department": "Economics",
+        "university": "Athens University of Economics and Business"
+      },
+      {
+        "id": "28",
+        "name": "Michael ",
+        "surname": "Papadreou",
+        "email": "michaelpap@gmail.com",
+        "topic": "Renewable Energy Systems",
+        "landline": "2610-4455667",
+        "mobile": "697-4455667",
+        "department": "Electrical Engineering",
+        "university": "University of Ioannina"
+      },
+      {
+        "id": "29",
+        "name": "Elon",
+        "surname": "Musk",
+        "email": "elonmusk@gmail.com",
+        "topic": "Electric Vehicles",
+        "landline": "1-888-518-3752",
+        "mobile": "Null",
+        "department": "Department of Physics",
+        "university": "University of Pennsylvania, Philadelphia"
+      },
+      {
+        "id": "30",
+        "name": "Kostas",
+        "surname": "Kalantas",
+        "email": "abcdef@example.com",
+        "topic": "AI",
+        "landline": "2610121212",
+        "mobile": "6912121212",
+        "department": "department",
+        "university": "University"
+      },
+      {
+        "id": "32",
+        "name": "Giorgis",
+        "surname": "Fousekis",
+        "email": "abcdefg@example.com",
+        "topic": "topic",
+        "landline": "land",
+        "mobile": "mob",
+        "department": "dep",
+        "university": "university"
+      },
+      {
+        "id": "33",
+        "name": "Nikos",
+        "surname": "Koukos",
+        "email": "exxample@example.com",
+        "topic": "top",
+        "landline": "la",
+        "mobile": "mo",
+        "department": "de",
+        "university": "university"
+      },
+      {
+        "id": "34",
+        "name": "patrick",
+        "surname": "xrusopsaros",
+        "email": "patric@xrusopsaros.com",
+        "topic": "thalasioi ipopotamoi",
+        "landline": "2610567917",
+        "mobile": "6952852742",
+        "department": "Solomos",
+        "university": "Nemo"
+      }
+    ]
+}

@@ -1,0 +1,1236 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f4f8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 0vh;
+    height: 100%;
+}
+
+        .navbar {
+            width: 100%;
+            background-color: #005f8b;
+            color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            margin: 0;
+        }
+        .navbar ul li {
+            margin-right: 30px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s, color 0.3s;
+            padding: 8px 16px;
+        }
+        .navbar ul li a:hover {
+            background-color: #f0f4f8;
+            color: #0077b6;
+            border-radius: 5px;
+        }
+        .home-icon {
+            font-size: 24px;
+            color: white;
+            margin-left: 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .home-icon:hover {
+            color: #f0f4f8;
+        }
+        .menu-toggle {
+    display: none;
+}
+        @media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: flex-end;
+        width: 100%;
+        display: none; /* Hidden by default on smaller screens */
+    }
+
+    .navbar ul li {
+        margin: 10px 0;
+    }
+
+    .navbar ul li a {
+        font-size: 16px;
+        width: 100%;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    /* Menu toggle button styling */
+    .menu-toggle {
+        font-size: 24px;
+        color: white;
+        margin-right: 20px;
+        cursor: pointer;
+        display: block;
+        transition: transform 0.3s; /* Smooth rotation for arrow */
+        margin-left: auto;
+    }
+
+    .menu-toggle.active {
+        transform: rotate(180deg); /* Rotate arrow when active */
+    }
+}
+
+/* Show the menu when active */
+.menu-toggle.active + ul {
+    display: flex;
+}
+
+/* Κουμπί + */
+.create-topic-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #005f8b;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    z-index: 9999; 
+}
+
+.create-topic-btn:hover {
+    background-color: #0077b6;
+}
+
+/* Το "X" που κλείνει τη φόρμα */
+.create-topic-form .close-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: #005f8b;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.create-topic-form .close-form:hover {
+    color: #0077b6;
+}
+
+/* Στυλ φόρμας */
+.create-topic-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.create-topic-form h2 {
+    text-align: center;
+}
+
+.create-topic-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-topic-form input,
+.create-topic-form textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.create-topic-form button {
+    padding: 10px;
+    background-color: #005f8b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.create-topic-form button:hover {
+    background-color: #0077b6;
+}
+
+
+/* Στυλ για το container των tabs */
+.tabs {
+    display: flex;
+  justify-content: space-around; /* Απόσταση ανάμεσα στα tabs */
+  list-style-type: none;
+  border-bottom: 1px solid black;
+  width: 30%; /* Σιγουρευόμαστε ότι η γραμμή των tabs καλύπτει όλο το πλάτος */
+  margin-top: 200px; /* Αυξήσαμε την απόσταση από το πάνω μέρος της σελίδας */
+  padding: 20px 0; /* Προαιρετικό padding για μεγαλύτερη ευχέρεια */
+  top: 100px;
+}
+
+/* Στυλ για κάθε tab */
+.tab {
+  cursor: pointer;
+  padding: 15px 25px;             /* Ενισχυμένο padding για μεγαλύτερη περιοχή κλικ */
+  text-align: center;             /* Ευθυγράμμιση του κειμένου στο κέντρο */
+  font-size: 13px;
+  font-weight: normal;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Ομαλή μετάβαση στο χρώμα φόντου και μικρή κίνηση */
+  display: inline-block;          /* Χρησιμοποιούμε inline-block για να τα τοποθετήσουμε σε μια γραμμή */
+  border-radius: 5px;            /* Στρογγυλές γωνίες για το tab */
+  background-color: #0076b6bc;      /* Χρώμα φόντου του tab */
+  color: white;                   /* Λευκό χρώμα κειμένου */
+  margin-right: 0px;              /* Απόσταση μεταξύ των tabs */
+  
+}
+
+/* Στυλ για το ενεργό tab */
+.tab.active {
+  background-color: #CCC;
+  font-weight: bold; /* Έντονο κείμενο για το ενεργό tab */
+}
+
+/* Εφέ hover για τα tabs */
+.tab:hover {
+  background-color: #AAA; /* Αλλάζει το χρώμα όταν περνάς το ποντίκι */
+  transform: scale(1.05);  /* Ελαφριά μεγέθυνση για πιο ευχάριστο εφέ */
+}
+
+/* Στυλ για το περιεχόμενο των tabs */
+.tab-content {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: none; /* Αρχικά κρυφό το περιεχόμενο */
+}
+
+/* Εμφάνιση του περιεχομένου όταν είναι ενεργό */
+.tab-content.active {
+  display: block;
+}
+
+/* Media Queries για καλύτερη απόκριση σε μικρές οθόνες */
+@media (max-width: 768px) {
+  .tabs {
+    flex-direction: column; /* Στήλη για μικρότερες οθόνες */
+    align-items: center;     /* Ευθυγράμμιση κεντρικά */
+    margin-top: 20px;        /* Μικρότερη απόσταση από το πάνω μέρος για μικρές οθόνες */
+  }
+
+  .tab {
+    width: 100%;             /* Τα tabs παίρνουν όλο το πλάτος */
+    margin-bottom: 10px;     /* Απόσταση μεταξύ των tabs */
+    text-align: center;      /* Κεντραρισμένο κείμενο */
+  }
+
+  .tab-content {
+    margin-left: 0;          /* Αφαίρεση του περιθωρίου στα πλάγια */
+    margin-right: 0;
+    padding: 15px;           /* Μικρότερο padding */
+  }
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+@media (max-width: 768px) {
+    main {
+        padding: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px 0;
+    }
+}
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #005f8b;
+}
+form label {
+    display: block;
+    margin-bottom: 6px; /* Λιγότερο κενό, για να φαίνεται πιο δεμένο */
+    font-weight: bold; /* Τονίζουμε το κείμενο */
+    font-size: 14px; /* Λίγο μεγαλύτερη γραμματοσειρά */
+    color: #333; /* Σκούρο γκρι για διακριτική εμφάνιση */
+    letter-spacing: 0.5px; /* Ελαφρώς πιο ευρύχωρα γράμματα */
+    transition: color 0.3s ease; /* Ομαλή μετάβαση στο hover */
+}
+
+/* Εφέ hover για πιο ζωντανή αίσθηση */
+form label:hover {
+    color: #0077b6; /* Χρώμα που εναρμονίζεται με το input */
+}
+
+
+form input {
+    padding: 12px 16px; /* Αυξήσαμε το padding για πιο ευχάριστη αίσθηση */
+    width: 100%;
+    max-width: 620px; 
+    margin-bottom: 15px;
+    border-radius: 6px; /* Πιο στρογγυλεμένες γωνίες */
+    border: 1px solid #ccc; /* Διακριτικό περίγραμμα */
+    background-color: #f9f9f9; /* Ανοιχτόχρωμο background για καθαρό look */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Προσθέσαμε εσωτερική σκιά */
+    font-size: 16px; /* Ελαφρώς μεγαλύτερη γραμματοσειρά */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Ομαλή μετάβαση */
+}
+
+/* Εφέ hover */
+form input:hover {
+    border-color: #005f8b; /* Αλλαγή στο περίγραμμα κατά το hover */
+}
+
+/* Εφέ focus */
+form input:focus {
+    border-color: #0077b6; /* Έντονο περίγραμμα κατά την εστίαση */
+    box-shadow: 0 0 6px rgba(0, 127, 255, 0.3); /* Ελαφριά εξωτερική σκιά */
+    outline: none; /* Αφαίρεση του default outline */
+}
+
+button {
+    background-color: #005f8b;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right; 
+}
+
+button:hover {
+    background-color: #b60000;
+}
+textarea {
+    width: 100%; /* Να καλύπτει όλο το διαθέσιμο πλάτος */
+    padding: 10px; /* Εσωτερικό κενό */
+    margin-bottom: 15px; /* Απόσταση από τα υπόλοιπα στοιχεία */
+    border: 1px solid #ddd; /* Απαλός γκρι περίγραμμα */
+    border-radius: 6px; /* Στρογγυλεμένες γωνίες */
+    font-size: 16px; /* Άνετο μέγεθος γραμματοσειράς */
+    font-family: Arial, sans-serif; /* Καθαρή γραμματοσειρά */
+    resize: vertical; /* Να μπορεί να αλλάζει μόνο το ύψος */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Ελαφριά εσωτερική σκιά */
+    background-color: #f9f9f9; /* Απαλό φόντο */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Εφέ μετάβασης */
+}
+
+textarea:focus {
+    border-color: #0078a8; /* Εμφάνιση μπλε γραμμής κατά την εστίαση */
+    box-shadow: 0 0 5px rgba(0, 120, 168, 0.5); /* Ελαφρύ μπλε highlight */
+    outline: none; /* Αφαίρεση του default περιγράμματος */
+}
+textarea:hover {
+    border-color: #005f8b; /* Αλλαγή στο περίγραμμα κατά το hover */
+}
+
+
+
+#topics-list .topic {
+    padding: 15px;
+    background-color: #eaf4fb;
+    border: 1px solid #d0e7f5;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+h2 {
+    font-size: 24px;
+    color: #005f8b;
+}
+
+.filters {
+    margin-bottom: 20px;
+}
+
+.filters label {
+    margin-right: 10px;
+}
+
+.filters select {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.filters button {
+    padding: 8px 16px;
+    background-color: #005f8b;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.filters button:hover {
+    background-color: #005f8b;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #005f8b;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0077b6;
+}
+
+
+/* Container for the Invitations Section */
+.container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Styled Table */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+/* Table Header */
+.styled-table thead tr {
+    background-color: #005f8b;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Alternating Row Colors */
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #d4ebf2;
+}
+
+/* Action Buttons */
+.styled-table td button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.styled-table td .accept-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.styled-table td .accept-btn:hover {
+    background-color: #218838;
+}
+
+.styled-table td .reject-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.styled-table td .reject-btn:hover {
+    background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    .styled-table th,
+    .styled-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}  
+
+
+canvas {
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+#status {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 0px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Στυλ για το container των κουμπιών */
+.status-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+/* Βασικό στυλ για τα κουμπιά */
+.status-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px; /* Στρογγυλεμένες γωνίες */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: white;
+}
+
+/* Διαφορετικά χρώματα για κάθε κουμπί */
+.status-button.under-assignment {
+    background-color: #f0ad4e; /* Πορτοκαλί */
+}
+
+.status-button.under-assignment:hover {
+    background-color: #ec971f;
+    transform: scale(1.05); /* Ελαφριά μεγέθυνση */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.status-button.active {
+    background-color: #5bc0de; /* Γαλάζιο */
+}
+
+.status-button.active:hover {
+    background-color: #31b0d5;
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.status-button.under-review {
+    background-color: #d9534f; /* Κόκκινο */
+}
+
+.status-button.under-review:hover {
+    background-color: #c9302c;
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.status-section {
+    display: none;
+    margin-top: 20px;
+}
+
+.status-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #005f8b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0077b6;
+}
+
+#status {
+    padding: 8px;
+    background-color: #ffffff;
+    border-radius: 0px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+#role {
+    padding: 8px;
+    background-color: #ffffff;
+    border-radius: 0px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#status-options button {
+    padding: 10px 15px;
+    margin-right: 8px;
+    background-color: #005f87;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#status-options button:hover {
+    background-color: #0077b6;
+}
+
+.status-section {
+    display: none;
+    margin-top: 20px;
+}
+
+.status-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #005f87;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0077b6;
+}
+
+.logout-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+.notification {
+    background-color: #0078a8; /* Πιο φωτεινό μπλε */
+    color: white; /* Λευκό κείμενο */
+    padding: 15px 20px; /* Ελαφρώς περισσότερο padding */
+    margin-top: 20px;
+    border-radius: 8px; /* Στρογγυλεμένες γωνίες */
+    text-align: center; /* Κέντρο το κείμενο */
+    position: fixed; /* Σταθερή θέση */
+    top: 20px; /* Απόσταση από την κορυφή */
+    left: 50%; /* Κέντρο της οθόνης */
+    transform: translateX(-50%); /* Ευθυγράμμιση στο κέντρο */
+    width: 50%; /* Πιο μικρό πλάτος */
+    z-index: 1000; /* Επάνω από άλλα στοιχεία */
+    font-size: 16px; /* Ελαφρώς μικρότερη γραμματοσειρά */
+    font-weight: bold; /* Έντονο κείμενο */
+    display: none; /* Απόκρυψη από την αρχή */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Ελαφριά σκιά */
+}
+
+.notification.show {
+    display: block; /* Εμφάνιση του notification */
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+
+
+/* Στυλ για το κουμπί επεξεργασίας */
+.editButton {
+            padding: 8px 12px;
+            background-color: #005f87;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .editButton:hover {
+            background-color: #0077b6;
+        }
+
+        /* Στυλ για τη φόρμα επεξεργασίας */
+        #editForm {
+            display: none;
+            width: 50%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        button[type="button"] {
+            padding: 10px 20px;
+            background-color: #005f87;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button[type="button"]:hover {
+            background-color: #0077b6;
+        }
+
+        /* Styling for the select box */
+#topic-list {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #f7f7f7;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/* Hover effect for select */
+#topic-list:hover {
+    border-color: #66b3ff;
+}
+
+/* Focus effect for select */
+#topic-list:focus {
+    border-color: #4571b8;
+    outline: none;
+}
+
+/* Customizing the option items */
+#topic-list option {
+    padding: 10px;
+}
+
+/* Adding a custom arrow (optional) */
+#topic-list::-ms-expand {
+    display: none;  /* Hide the default dropdown arrow in IE */
+}
+/* Γενικό Styling για το Container */
+#management {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Επικεφαλίδα */
+#management h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #005f8b;
+    margin-bottom: 20px;
+}
+
+/* Ετικέτες */
+#management label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Dropdowns */
+#management select {
+    width: 100%;
+    padding: 12px 15px; /* Ελαφρώς μεγαλύτερο padding */
+    margin-bottom: 20px;
+    border: 1px solid #ccc; /* Απαλό γκρι περίγραμμα */
+    border-radius: 8px; /* Πιο στρογγυλεμένες γωνίες */
+    background-color: #ffffff; /* Καθαρό λευκό φόντο */
+    color: #333; /* Σκούρο γκρι κείμενο */
+    font-size: 16px; /* Μεγαλύτερη γραμματοσειρά */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Προσθήκη σκιάς */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Ομαλή μετάβαση */
+}
+
+/* Εφέ hover */
+#management select:hover {
+    border-color: #0077b6; /* Μπλε περίγραμμα */
+    box-shadow: 0 0 6px rgba(0, 119, 182, 0.3); /* Ελαφρύ μπλε highlight */
+}
+
+/* Εφέ focus */
+#management select:focus {
+    border-color: #005f8b; /* Έντονο μπλε περίγραμμα */
+    box-shadow: 0 0 8px rgba(0, 95, 139, 0.5); /* Highlight κατά την εστίαση */
+    outline: none; /* Αφαίρεση του default outline */
+}
+
+/* Στυλ για τα option items */
+#management select option {
+    padding: 10px; /* Καλύτερη διάταξη για τις επιλογές */
+    color: #333; /* Σκούρο γκρι χρώμα */
+    background-color: #ffffff; /* Καθαρό λευκό φόντο */
+}
+
+
+/* Κουμπί Φιλτραρίσματος */
+.filter-button {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filter-button button {
+    padding: 10px 20px;
+    background-color: #005f8b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Προσθήκη μετάβασης και για το box-shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Απαλή σκιά από default */
+}
+
+.filter-button button:hover {
+    background-color: #0077b6;
+    box-shadow: 0 0 10px rgba(0, 120, 255, 0.8); /* Φωτεινή μπλε σκιά όταν περνάτε το ποντίκι */
+}
+
+
+/* Εξαγωγή Δεδομένων */
+.export {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+}
+
+.export button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px 20px;
+    background-color: #005f8b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.export button:hover {
+    background-color: #0077b6;
+}
+
+/* Γενικά στυλ για τη διαχείριση */
+#status {
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+#status h2 {
+    color: #005f8b;
+    text-align: center;
+}
+
+#status-options {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+#status-options button {
+    background-color: #005f8b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#status-options button:hover {
+    background-color: #0077b6;
+}
+
+.status-section {
+    display: none; /* Όλα κρυφά στην αρχή */
+}
+
+.status-section.active {
+    display: block; /* Εμφάνιση της επιλεγμένης ενότητας */
+}
+
+ul#committee-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+ul#committee-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+ul#committee-list li:last-child {
+    border-bottom: none;
+}
+
+ul#committee-list li span {
+    display: block;
+    font-size: 14px;
+    color: #555;
+}
+
+.thesis-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.thesis-section h4 {
+    margin-top: 0;
+    color: #005f8b;
+}
+
+.thesis-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.thesis-section ul li {
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #eaf4fb;
+    border: 1px solid #cddde8;
+    border-radius: 4px;
+}
+
+.thesis-section button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.thesis-section button:hover {
+    background-color: #c82333;
+}
+
+
+.status-section {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.status-section h3 {
+    font-size: 24px;
+    color: #005f8b;
+    margin-bottom: 15px;
+}
+
+
+.note-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.note-section textarea {
+    width: 80%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.note-section textarea:focus {
+    border-color: #0077b6;
+    box-shadow: 0 0 8px rgba(0, 119, 182, 0.3);
+    outline: none;
+}
+
+.primary-button, .danger-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    width: 200px;
+}
+
+.primary-button {
+    background-color: #005f8b;
+    color: white;
+}
+
+.primary-button:hover {
+    background-color: #0077b6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.danger-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.danger-button:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
+/* Στυλ για κάθε κάρτα */
+.thesis-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.thesis-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Στυλ για τον τίτλο */
+.thesis-item h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Στυλ για το περιεχόμενο */
+.thesis-item p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Στυλ για το κουμπί */
+.thesis-item button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.thesis-item button:hover {
+    background-color: #0056b3;
+}
+
+.cancel-button {
+    background-color: #dc3545; /* Κόκκινο */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+    background-color: #c82333; /* Σκούρο κόκκινο */
+}
+
+/* Modal Styling */
+#details-modal {
+    width: 50%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#modal-content {
+    padding: 15px;
+}
+
+#details-modal button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    float: right;
+}
+
+#details-modal button:hover {
+    background-color: #007bff;
+}
+
+/* Tabs Container */
+div > button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Hover Effects */
+div > button:hover {
+    background-color: #007bff;
+}
+
+/* Disabled Button */
+div > button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+
+.theses-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.theses-table th, .theses-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.theses-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+
+
+
+
+footer {
+    text-align: center;
+    margin-top: 20px; /* Αν θέλεις κάποια απόσταση από το περιεχόμενο πριν το footer */
+    color: #0077b6;
+    font-size: 14px;
+    position: fixed; /* Κάνει το footer να μένει στο κάτω μέρος της σελίδας */
+    bottom: 0; /* Βασική θέση του footer στο κάτω μέρος */
+    left: 0;
+    right: 0;
+    background-color: #f0f4f8; /* Αν θέλεις να έχει κάποιο background */
+    padding: 10px 0;
+    white-space: nowrap; /* Αποτρέπει το σπάσιμο του κειμένου */
+    z-index: -1;
+}
+
+footer p {
+    margin: 0px;
+}
+

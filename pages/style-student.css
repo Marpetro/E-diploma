@@ -1,0 +1,606 @@
+
+body {
+font-family: 'Roboto', sans-serif;
+margin: 0;
+padding: 0;
+background: #f0f4f8;
+display: flex;
+flex-direction: column;
+justify-content: center;  /* Ευθυγράμμιση στο κέντρο κατακόρυφα */
+align-items: center;      /* Ευθυγράμμιση στο κέντρο οριζόντια */
+min-height: 0vh;        /* Χρησιμοποιούμε όλο το ύψος της σελίδας */
+height: 100%;
+}
+.navbar {
+    width: 100%;
+    background-color: #005f8b;
+    color: white;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+}
+.navbar ul li {
+    margin-right: 30px;
+}
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 8px 16px;
+}
+.navbar ul li a:hover {
+    background-color: #f0f4f8;
+    color: #0077b6;
+    border-radius: 5px;
+}
+.home-icon {
+    font-size: 24px;
+    color: white;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.home-icon:hover {
+    color: #f0f4f8;
+}
+.menu-toggle {
+display: none;
+}
+@media (max-width: 768px) {
+.navbar {
+flex-direction: column;
+align-items: flex-start;
+padding: 10px;
+}
+
+.navbar ul {
+flex-direction: column;
+align-items: flex-end;
+width: 100%;
+display: none; /* Hidden by default on smaller screens */
+}
+
+.navbar ul li {
+margin: 10px 0;
+}
+
+.navbar ul li a {
+font-size: 16px;
+width: 100%;
+text-align: left;
+padding-left: 10px;
+}
+
+/* Menu toggle button styling */
+.menu-toggle {
+font-size: 24px;
+color: white;
+margin-right: 20px;
+cursor: pointer;
+display: block;
+transition: transform 0.3s; /* Smooth rotation for arrow */
+margin-left: auto;
+}
+
+.menu-toggle.active {
+transform: rotate(180deg); /* Rotate arrow when active */ 
+}
+}
+
+/* Show the menu when active */
+.menu-toggle.active + ul { 
+display: flex;
+}
+
+/* Στυλ για το container των tabs */
+.tabs {
+display: flex;
+justify-content: space-around; /* Απόσταση ανάμεσα στα tabs */
+list-style-type: none;
+border-bottom: 1px solid black;
+width: 30%; /* Σιγουρευόμαστε ότι η γραμμή των tabs καλύπτει όλο το πλάτος */
+margin-top: 200px; /* Αυξήσαμε την απόσταση από το πάνω μέρος της σελίδας */
+padding: 20px 0; /* Προαιρετικό padding για μεγαλύτερη ευχέρεια */
+top: 100px;
+}
+
+/* Στυλ για κάθε tab */
+.tab {
+cursor: pointer;
+padding: 15px 25px;             /* Ενισχυμένο padding για μεγαλύτερη περιοχή κλικ */
+text-align: center;             /* Ευθυγράμμιση του κειμένου στο κέντρο */
+font-size: 13px;
+font-weight: normal;
+transition: background-color 0.3s ease, transform 0.2s ease; /* Ομαλή μετάβαση στο χρώμα φόντου και μικρή κίνηση */
+display: inline-block;          /* Χρησιμοποιούμε inline-block για να τα τοποθετήσουμε σε μια γραμμή */
+border-radius: 5px;            /* Στρογγυλές γωνίες για το tab */
+background-color: #0076b6bc;      /* Χρώμα φόντου του tab */
+color: white;                   /* Λευκό χρώμα κειμένου */
+margin-right: 0px;              /* Απόσταση μεταξύ των tabs */
+}
+
+/* Στυλ για το ενεργό tab */
+.tab.active {
+background-color: #CCC;
+font-weight: bold; /* Έντονο κείμενο για το ενεργό tab */
+}
+
+/* Εφέ hover για τα tabs */
+.tab:hover {
+background-color: #AAA; /* Αλλάζει το χρώμα όταν περνάς το ποντίκι */
+transform: scale(1.05);  /* Ελαφριά μεγέθυνση για πιο ευχάριστο εφέ */
+}
+
+/* Στυλ για το περιεχόμενο των tabs */
+.tab-content {
+margin-left: 20px;
+margin-right: 20px;
+padding: 20px;
+background-color: #f9f9f9;
+border: 1px solid #ddd;
+border-radius: 5px;
+display: none; /* Αρχικά κρυφό το περιεχόμενο */
+}
+
+/* Εμφάνιση του περιεχομένου όταν είναι ενεργό */
+.tab-content.active {
+display: block;
+}
+
+/* Media Queries για καλύτερη απόκριση σε μικρές οθόνες */
+@media (max-width: 768px) {
+.tabs {
+flex-direction: column; /* Στήλη για μικρότερες οθόνες */
+align-items: center;     /* Ευθυγράμμιση κεντρικά */
+margin-top: 20px;        /* Μικρότερη απόσταση από το πάνω μέρος για μικρές οθόνες */
+}
+
+.tab {
+width: 100%;             /* Τα tabs παίρνουν όλο το πλάτος */
+margin-bottom: 10px;     /* Απόσταση μεταξύ των tabs */
+text-align: center;      /* Κεντραρισμένο κείμενο */
+}
+
+.tab-content {
+margin-left: 0;          /* Αφαίρεση του περιθωρίου στα πλάγια */
+margin-right: 0;
+padding: 15px;           /* Μικρότερο padding */
+}
+}
+
+.stepper {
+    display: flex;
+    align-items: center;
+    background-color: #005f8b; /* Navy Blue */
+    padding: 15px 30px;
+    border-radius: 10px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px;
+    text-align: center;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Animation for smooth transition */
+}
+
+.step-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff; /* Circle background */
+    color: #005f8b; /* Text color */
+    font-weight: bold;
+    font-size: 16px;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Animation for smooth transition */
+}
+
+.step-label {
+    margin-top: 10px;
+    font-size: 14px;
+    opacity: 1;
+    transition: opacity 0.3s ease; /* Smooth opacity change for the label */
+}
+
+.step.active .step-icon {
+    background-color: #f4b400; /* Yellow for active step */
+    color: #ffffff;
+    transform: scale(1.2); /* Highlight active step with scaling */
+}
+
+.step.completed .step-icon {
+    background-color: #7eb1cdbc; /* Green for completed step */
+    color: #ffffff;
+    transform: scale(1); /* reset scale for completed step */
+}
+
+.line {
+    height: 2px;
+    width: 40px;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease, width 0.3s ease; /* Smooth line fill animation */
+}
+
+.line.completed {
+    background-color: #7eb1cdbc; /* Green for completed steps */
+    width: 50px; /* Slightly increase line width on completion for effect */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #005f8b;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease; /* Button hover transition */
+}
+
+button:hover {
+    background-color: #f4b400;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+.content {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    display: none; /* Hide content by default */
+}
+
+.content.active {
+    display: block;
+}
+.calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    background-color: #f4f4f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+main {
+max-width: 800px;
+margin: 0 auto;
+padding: 20px;
+background-color: #ffffff;
+border-radius: 8px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+flex: 1;
+}
+@media (max-width: 768px) {
+main {
+padding: 10px;
+}
+
+button {
+width: 100%;
+padding: 12px 0;
+}
+}
+section {
+margin-bottom: 20px;
+}
+
+h2 {
+color: #005f87;
+}
+
+form label {
+display: block;
+margin-bottom: 8px;
+}
+
+form input {
+padding: 8px;
+width: 100%;
+margin-bottom: 10px;
+border-radius: 4px;
+border: 1px solid #ddd;
+}
+
+button {
+background-color: #0077b6;
+color: #ffffff;
+padding: 10px 15px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+float: right; 
+}
+
+button:hover {
+background-color: #005f87;
+}
+
+#topics-list .topic {
+padding: 15px;
+background-color: #eaf4fb;
+border: 1px solid #d0e7f5;
+border-radius: 4px;
+margin-bottom: 10px;    
+}
+h2 {
+font-size: 24px;
+color: #0077b6;
+}
+
+.filters {
+margin-bottom: 20px;
+}
+
+.filters label {
+margin-right: 10px;
+}
+
+.filters select {
+padding: 5px;
+margin-right: 10px;
+}
+
+.filters button {
+padding: 8px 16px;
+background-color: #0077b6;
+color: white;
+border: none;
+cursor: pointer;
+}
+
+.filters button:hover {
+background-color: #005f8a;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin-bottom: 20px;
+}
+
+table, th, td {
+border: 1px solid #ddd;
+}
+
+th, td {
+padding: 10px;
+text-align: left;
+}
+
+button {
+padding: 5px 10px;
+background-color: #0077b6;
+color: white;
+border: none;
+cursor: pointer;
+}
+
+button:hover {
+background-color: #005f8a;
+}
+
+.export button {
+padding: 8px 16px;
+margin-top: 10px;
+background-color: #0077b6;
+color: white;
+border: none;
+cursor: pointer;
+}
+
+.export button:hover {
+background-color: #005f8a;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #0077b6;
+    color: white;
+}
+
+td button {
+    padding: 6px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+td button:hover {
+    background-color: #218838;
+}
+
+td button.reject {
+    background-color: #dc3545;
+}
+td button.reject:hover {
+    background-color: #c82333;
+}
+h2 {
+color: #005f87;
+}
+
+canvas {
+max-width: 100%;
+margin-top: 20px;
+}
+
+#status {
+padding: 20px;
+background-color: #ffffff;
+border-radius: 0px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#status-options button {
+padding: 10px 15px;
+margin-right: 10px;
+background-color: #0077b6;
+color: #ffffff;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+#status-options button:hover {
+background-color: #005f87;
+}
+
+.status-section {
+display: none;
+margin-top: 20px;
+}
+
+.status-section ul {
+list-style-type: disc;
+padding-left: 20px;
+}
+
+button {
+padding: 10px 15px;
+background-color: #0077b6;
+color: white;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+margin-top: 10px;
+}
+
+button:hover {
+background-color: #005f87;
+}
+
+#management-options {
+margin-bottom: 20px;
+display: flex;
+gap: 10px;
+}
+
+#management-options button {
+padding: 10px 15px;
+background-color: #0056b3;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 14px;
+}
+
+#management-options button:hover {
+background-color: #0056b3;
+}
+
+.status-section {
+display: none; /* Απόκρυψη όλων των sections αρχικά */
+border: 1px solid #ddd;
+padding: 15px;
+border-radius: 5px;
+background-color: #f9f9f9;
+margin-top: 10px;
+}
+
+.status-section.active {
+display: block; /* Εμφάνιση του ενεργού section */
+}
+
+form {
+margin-top: 10px;
+}
+
+form label {
+display: block;
+margin: 5px 0;
+font-weight: bold;
+}
+
+form input {
+padding: 5px;
+width: calc(100% - 10px);
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 3px;
+}
+
+form button {
+padding: 7px 10px;
+background-color: #0056b3;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+form button:hover {
+background-color: #005f87;
+}
+
+.logout-icon {
+width: 20px;
+height: 20px;
+margin-right: 8px;
+}
+.hidden {
+    display: none;
+}
+
+
+footer {
+text-align: center;
+margin-top: 20px; /* Αν θέλεις κάποια απόσταση από το περιεχόμενο πριν το footer */
+color: #0077b6;
+font-size: 14px;
+position: fixed; /* Κάνει το footer να μένει στο κάτω μέρος της σελίδας */
+bottom: 0; /* Βασική θέση του footer στο κάτω μέρος */
+left: 0;
+right: 0;
+background-color: #f0f4f8; /* Αν θέλεις να έχει κάποιο background */
+padding: 10px 0;
+white-space: nowrap; /* Αποτρέπει το σπάσιμο του κειμένου */
+z-index: -1;
+}
+
+footer p {
+margin: 0px;
+}
+

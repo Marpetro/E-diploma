@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homepage</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style-student.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a href="tabs-students.html" class="home-icon"><i class="fas fa-home"></i></a>
+        <span class="menu-toggle">▼</span>
+        <ul>
+            <li><a href="#notifications">Ειδοποιήσεις</a></li>
+            <li><a href="#help">Βοήθεια</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+    
+        <!-- Container για τα tabs -->
+        <div class="tab-container">
+          <div class="tab active" onclick="openTab(event, 'viewthesi')">Προβολή Θέματος Διπλωματικής</div>
+          <div class="tab" onclick="openTab(event, 'profile')">Επεξεργασία Προφίλ</div>
+          <div class="tab" onclick="openTab(event, 'management')">Διαχείριση Διπλωματικής Εργασίας</div>
+           
+        </div>
+         <!-- Περιεχόμενο για κάθε tab -->
+          <div id="viewthesi" class="tab-content active">
+             <h2> Προβολή Θέματος Διπλωματικής </h2>
+             <p>Δείτε τις λεπτομέρειες του θέματος, την τρέχουσα κατάστασή του, και τα μέλη της επιτροπής.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Τίτλος Θέματος</th>
+                        <th>Σύνοψη</th>
+                        <th>Αρχείο PDF</th>
+                        <th>Κατάσταση</th>
+                        <th>Τριμελή Επιτροπή</th>
+                        <th>Διάρκεια</th>
+                    </tr>
+                </thead>
+                <tbody id="thesisTableBody">
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>            
+          </div>
+
+   <div id="profile" class="tab-content">
+                <h2>Επεξεργασία Προφίλ</h2>
+                <p>Επεξεργασία των στοιχείων επικοινωνίας σας. Μπορείτε να αλλάξτε τα πεδία που υποδυκνύει το (*).</p>
+            
+                <h1 style="text-align: center;">Στοιχεία Προφίλ</h1>
+                
+                <form id="profileForm">
+                    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: auto; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th>Πεδίο</th>
+                                <th>Τιμή</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Εμφάνιση δεδομένων -->
+                            <tr>
+                                <td>Όνομα</td>
+                                <td><input type="text" id="name" name="name" value="" style="width: 100%;" readonly></td>
+                            </tr>
+                            <tr>
+                                <td>Επώνυμο</td>
+                                <td><input type="text" id="surname" name="surname" value="" style="width: 100%;" readonly></td>
+                            </tr>
+                            <tr>
+                                <td>Αριθμός Μητρώου</td>
+                                <td><input type="text" id="student_number" name="student_number" value="" style="width: 100%;" readonly></td>
+                            </tr>
+                            <tr>
+                                <td>Όνομα Πατέρα</td>
+                                <td><input type="text" id="father_name" name="father_name" value="" style="width: 100%;" readonly></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Πόλη*</td>
+                                <td><input type="text" id="city" name="city" value="<?= htmlspecialchars($student['city']) ?>" style="width: 100%;"></td>
+                            </tr>
+                            <tr>
+                                <td>Οδός*</td>
+                                <td><input type="text" id="street" name="street" value="<?= htmlspecialchars($student['street']) ?>" style="width: 100%;"></td>
+                            </tr>
+                            <tr>
+                                <td>Αριθμός*</td>
+                                <td><input type="text" id="number" name="number" value="<?= htmlspecialchars($student['number']) ?>" style="width: 100%;"></td>
+                            </tr>
+                            <tr>
+                                <td>Τ.Κ*/div></td>
+                                <td><input type="text" id="postcode" name="postcode" value="<?= htmlspecialchars($student['postcode']) ?>" style="width: 100%;"></td>
+                            </tr>
+                            <tr>
+                                <td>Κινητό Τηλέφωνο*</td>
+                                <td><input type="tel" id="mobilePhone" name="mobile_telephone" value="<?= htmlspecialchars($student['mobile_telephone']) ?>" style="width: 100%;"></td>
+                            </tr>
+                            <tr>
+                                <td>Σταθερό Τηλέφωνο*</td>
+                                <td><input type="tel" id="phone" name="landline_telephone" value="<?= htmlspecialchars($student['landline_telephone']) ?>" style="width: 100%;"></td>
+                            </tr>
+                            <tr>
+                                <td>Email*</td>
+                                <td><input type="email" id="email" name="email" value="<?= htmlspecialchars($student['email']) ?>" style="width: 100%;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button type="submit">Αποθήκευση</button>
+                        <button type="reset">Επαναφορά</button>
+                    </div>
+                </form>
+  
+            </div>
+        
+    <div id="management" class="tab-content">
+        <h2>Διαχείριση Κατάστασης Διπλωματικών Εργασιών</h2>
+        <p>Διαχειριστείτε τις διπλωματικές εργασίες ανάλογα με την τρέχουσα κατάστασή τους.</p>
+    
+        <div class="stepper">
+            <!-- Step 1 -->
+            <div class="step active" id="step-1">
+                <div class="step-icon">1</div>
+                <div class="step-label">Υπό Ανάθεση</div>
+            </div>
+            <div class="line" id="line-1"></div>
+            <!-- Step 2 -->
+            <div class="step" id="step-2">
+                <div class="step-icon">2</div>
+                <div class="step-label">Υπό Εξέταση</div>
+            </div>
+            <div class="line" id="line-2"></div>
+            <!-- Step 3 -->
+            <div class="step" id="step-3">
+                <div class="step-icon">3</div>
+                <div class="step-label">Περατωμένη</div>
+            </div>
+           
+        </div>
+
+
+<!-- first stepper-------------- ΥΠΟ ΑΝΑΘΕΣΗ--> 
+        <div class="content active" id="content-1">
+            <!-- Content for each step will be dynamically inserted here -->
+            <h1>Επιλέξτε Διδάσκοντες</h1>
+
+                <form id="add-members-form">
+                    <label for="professor">Διδάσκων:</label>
+                    <input type="text" id="professor" placeholder="Εισάγετε όνομα Διδάσκοντα" required>
+                    <button type="button" onclick="addMember()">Προσθήκη</button>
+                </form>
+               <ul id="committee-list"></ul>
+                <button onclick="finalizeCommittee()">Ολοκλήρωση Ανάθεσης</button>
+        </div>
+                    
+     <!-- 2 stepper-------------- ΕΝΕΡΓΗ
+                <div class="content" id="content-2">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Τίτλος Θέματος</th>
+                                 <th>Σύνοψη</th>
+                                <th>Αρχείο PDF</th>
+                                 <th>Κατάσταση</th>
+                                <th>Τριμελή Επιτροπή</th>
+                                <th>Διάρεκια</th>
+                            </tr>
+                        </thead>
+                        <tbody id="committee-table">
+                            Οι γραμμές θα εισάγονται δυναμικά 
+                        </tbody>
+                    </table>
+                    <button onclick="fetchCommittees()">Ανανέωση Κατάστασης</button>
+                    
+            Content for each step will be inserted here 
+                    <table border="1" cellpadding="10" cellspacing="0">
+                         <thead>
+                            <tr>
+                                <th>Τίτλος Θέματος</th>
+                                 <th>Σύνοψη</th>
+                                <th>Αρχείο PDF</th>
+                                 <th>Κατάσταση</th>
+                                <th>Τριμελή Επιτροπή</th>
+                                <th>Διάρεκια</th>
+                            </tr>
+                         </thead>
+                         <tbody id="thesisTableBody1">
+                         </tbody>
+                    </table>
+                 </div>-->
+
+        <!-- 2 stepper-------------- ΥΠΟ ΕΞΕΤΑΣΗ-->
+        <div class="content" id="content-2">
+            <!-- Content for each step will be  inserted here -->
+            <p>Ορισμός τελικής εξέτασης</p>
+            <p>Συμπληρώστε τα παρακάτω πεδία</p>
+                         
+               <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: auto; border-collapse: collapse;">
+                
+                <tbody>
+                    <tr>
+                        <td>Αρχείο</td>
+                        <td>
+                            <input type="file" id="file_upload" name="file_upload" style="width: 100%;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Σύνδεσμος</td>
+                        <td>
+                            <textarea id="link_input" name="link_input" placeholder="Εισάγετε σύνδεσμο" style="width: 100%; height: 50px;"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ημερομηνία</td>
+                        <td>
+                            <input type="date" id="date_input" name="date_input" style="width: 100%;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ώρα</td>
+                        <td>
+                            <input type="time" id="time_input" name="time_input" style="width: 100%;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Τρόπος Εξέτασης</td> <!-- αν επιλέξει διαδικτυακα θα εμφανιστει το πεδιο για το λινκ αν επιλεξει δια ζώσης θα εμφανιστει το πεδίο για την αίθουσα-->
+                        <td>
+                            <select id="exam_mode" name="exam_mode" style="width: 100%;" onchange="toggleFields()">
+                                <option value="online">Διαδικτυακά</option>
+                                <option value="in-person">Δια ζώσης</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="room_row" style="display: none;">
+                        <td>Αίθουσα</td>
+                        <td>
+                            <input type="text" id="room_input" name="room_input" placeholder="Εισάγετε αίθουσα" style="width: 100%;">
+                        </td>
+                    </tr>
+                    <tr id="online_room_row" style="display: none;">
+                        <td>Διαδικτυακή Αίθουσα</td>
+                        <td>
+                            <input type="url" id="online_room_input" name="online_room_input" placeholder="Εισάγετε σύνδεσμο για διαδικτυακή αίθουσα" style="width: 100%;">
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+          <!--  <table border="1" cellpadding="10" cellspacing="0">
+                <thead>
+                   <tr>
+                       <th>Τίτλος Θέματος</th>
+                        <th>Σύνοψη</th>
+                       <th>Αρχείο PDF</th>
+                        <th>Κατάσταση</th>
+                       <th>Τριμελή Επιτροπή</th>
+                       <th>Διάρεκια</th>
+                   </tr>
+                </thead>
+                <tbody id="thesisTableBody">
+                                   </tbody>
+           </table>
+        -->
+        </div>
+
+        <!-- 3 stepper-------------- ΠΕΡΑΤΩΜΕΝΗ-->
+        <div class="content" id="content-3">
+            <!-- Content for each step will be  inserted here -->
+          <!--  <table border="1" cellpadding="10" cellspacing="0">
+                    <thead>
+                       <tr>
+                           <th>Τίτλος Θέματος</th>
+                            <th>Σύνοψη</th>
+                           <th>Αρχείο PDF</th>
+                            <th>Κατάσταση</th>
+                           <th>Τριμελή Επιτροπή</th>
+                           <th>Διάρεκια</th>
+                           
+                       </tr>
+                    </thead>
+                        <tbody id="thesisTableBody">
+                                           </tbody>
+               </table> -->
+               
+            <ul>
+                <li>Πρακτικό Εξέτασης: <a href="#" target="_blank">Προβολή</a></li>
+                 <li>Σύνδεσμος Αποθετηρίου: 
+                        <input type="url" id="repository_link_input" placeholder="Εισάγετε σύνδεσμο" style="width: 70%;">
+                        <button type="button" onclick="setRepositoryLink()">Ενημέρωση</button>
+                    </li>
+                    <li id="repository_link_display" style="display: none;">
+                    Σύνδεσμος Αποθετηρίου: <a href="#" id="repository_link" target="_blank">Προβολή</a>
+                    </li>
+            </ul>
+            </div>
+
+            <button id="next-btn">Next Step</button>
+        
+    
+       
+    
+    
+
+        <footer>© 2024 e-diploma - Όλα τα δικαιώματα διατηρούνται.</footer>  
+</body>
+<body>
+    
+
+    <script src="script-students.js"></script>
+      
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>assignment</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #0077b6;
+            color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            margin: 0;
+        }
+        .navbar ul li {
+            margin-right: 30px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s, color 0.3s;
+            padding: 8px 16px;
+        }
+        .navbar ul li a:hover {
+            background-color: #f0f4f8;
+            color: #0077b6;
+            border-radius: 5px;
+        }
+        .home-icon {
+            font-size: 24px;
+            color: white;
+            margin-left: 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .home-icon:hover {
+            color: #f0f4f8;
+        }
+
+        header h1 {
+    text-align: center;
+    color: #0077b6;
+    margin: 20px 0;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #005f87;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+form input {
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+button {
+    background-color: #0077b6;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right; 
+}
+
+button:hover {
+    background-color: #005f87;
+}
+
+#topics-list .topic {
+    padding: 15px;
+    background-color: #eaf4fb;
+    border: 1px solid #d0e7f5;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+
+
+footer {
+    text-align: center;
+    margin-top: 40px; /* Αν θέλεις κάποια απόσταση από το περιεχόμενο πριν το footer */
+    color: #0077b6;
+    font-size: 14px;
+    position: fixed; /* Κάνει το footer να μένει στο κάτω μέρος της σελίδας */
+    bottom: 0; /* Βασική θέση του footer στο κάτω μέρος */
+    left: 0;
+    right: 0;
+    background-color: #f0f4f8; /* Αν θέλεις να έχει κάποιο background */
+    padding: 10px 0;
+    white-space: nowrap; /* Αποτρέπει το σπάσιμο του κειμένου */
+    z-index: 1;
+}
+
+footer p {
+    margin: 0;
+}
+
+    </style>
+</head>
+<body>
+   
+    <header>
+        <h1>Ανάθεση Ελεύθερου Θέματος</h1>
+    </header>
+
+    <main>
+        <!-- Φόρμα Αναζήτησης Φοιτητή -->
+        <section id="student-search">
+            <h2>Αναζήτηση Φοιτητή</h2>
+            <form id="search-student-form">
+                <label for="student-id">Αριθμός Μητρώου ή Ονοματεπώνυμο:</label>
+                <input type="text" id="student-id" placeholder="ΑΜ ή Ονοματεπώνυμο">
+                <button type="button" onclick="searchStudent()">Αναζήτηση</button>
+            </form>
+            <div id="student-info">
+                <!-- Εδώ θα εμφανίζονται τα στοιχεία του φοιτητή εάν βρεθεί -->
+            </div>
+        </section>
+
+        <!-- Λίστα Διαθέσιμων Θεμάτων -->
+        <section id="available-topics">
+            <h2>Διαθέσιμα Θέματα</h2>
+            <div id="topics-list">
+                <!-- Παράδειγμα θέματος -->
+                <div class="topic">
+                    <h3>Τίτλος Θέματος 1</h3>
+                    <p>Περιγραφή θέματος...</p>
+                    <button onclick="assignTopic('topic1')">Ανάθεση</button>
+                </div>
+                <!-- Περισσότερα θέματα -->
+            </div>
+        </section>
+
+        <!-- Περιοχή για Προσωρινή Ανάθεση και Ακύρωση -->
+        <section id="assignment-actions">
+            <h2>Προσωρινή Ανάθεση</h2>
+            <p>Το θέμα έχει ανατεθεί προσωρινά. Περιμένετε έγκριση από τα άλλα μέλη της επιτροπής.</p>
+            <button onclick="cancelAssignment()">Ακύρωση Ανάθεσης</button>
+        </section>
+      
+    </main>
+
+    <script src="assignment.js"></script>
+</body>
+</html>

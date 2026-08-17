@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homepage</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style-prof.css">
+
+</head>
+<body>
+    <div class="navbar">
+        <a href="tabs-prof.html" class="home-icon"><i class="fas fa-home"></i></a>
+        <span class="menu-toggle">▼</span>
+        <ul>
+            <li><a href="#notifications">Ειδοποιήσεις</a></li>
+            <li><a href="#help">Βοήθεια</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+
+
+        </ul>
+    </div>
+  
+   
+<!-- Κουμπί για Δημιουργία Νέου Θέματος -->
+<div class="create-topic-btn" id="create-topic-btn">
+    <span>+</span>
+</div>
+
+<!-- Φόρμα Δημιουργίας Θέματος -->
+<div class="create-topic-form" id="create-topic-form">
+    <span class="close-form" id="close-form">&times;</span>
+    <h2>Δημιουργία Νέου Θέματος Διπλωματικής</h2>
+    <form id="create-topic-form1" enctype="multipart/form-data">
+
+        <label for="title">Τίτλος Θέματος:</label>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="description">Σύνοψη Θέματος:</label>
+        <textarea id="description" name="description" rows="4" required></textarea><br><br>
+
+        <label for="pdf">Επισύναψη PDF:</label>
+        <input type="file" id="pdf" name="pdf" accept="application/pdf"><br><br>
+
+        <button type="button" onclick="submitForm()">Δημιουργία Θέματος</button>
+    </form>
+    <div id="success-notification" class="notification" style="display: none;">
+        Η καταχώρηση υποβλήθηκε επιτυχώς!
+    </div>
+</div>
+
+    
+
+
+
+    <body>
+        <!-- Container για τα tabs -->
+        <div class="tab-container">
+          <div class="tab active" onclick="openTab(event, 'assignment')">Ανάθεση Ελεύθερου Θέματος</div>
+          <div class="tab" onclick="openTab(event, 'viewTheses')">Προβολή Διπλωματικών</div>
+          <div class="tab" onclick="openTab(event, 'management')">Διαχείριση Διπλωματικών Εργασιών</div>
+          <div class="tab" onclick="openTab(event, 'invitations')">Διαχείριση Προσκλήσεων</div>
+          <div class="tab" onclick="openTab(event, 'statistics')">Στατιστικά και Γραφήματα</div>
+          <div class="tab" onclick="openTab(event, 'status')">Διαχείριση Κατάστασης Εργασιών</div>
+        </div>
+      
+        <!-- Περιεχόμενο για κάθε tab -->
+        <div id="assignment" class="tab-content active">
+            <p>Ανάθεση ελεύθερου θέματος σε φοιτητή με αναζήτηση μέσω ΑΜ ή ονοματεπώνυμου.</p>
+            
+        
+            <main>
+                <!-- Φόρμα Αναζήτησης Φοιτητή -->
+                
+                <section id="student-search">
+                    <h2>Αναζήτηση Φοιτητή</h2>
+                    <form id="search-student-form">
+                        <label for="student-id">Αριθμός Μητρώου ή Ονοματεπώνυμο:</label>
+                        <input type="text" id="student-id" name="student-id" placeholder="ΑΜ ή Ονοματεπώνυμο">
+                        <button type="button" onclick="searchStudent()">Αναζήτηση</button>
+                        <div id="message"></div>
+                    </form>
+                </section>
+                
+                <section id="assign-topic">
+                    <h2>Ανάθεση Θέματος</h2>
+                    <form id="assign-topic-form">
+                        <label for="topic-list">Τίτλος Θέματος:</label>
+                        <select id="topic-list" name="topic-list">
+                            <option value="" disabled selected>Επιλέξτε Θέμα</option>
+                        </select>
+                        <button type="button" onclick="assignTopic()">Ανάθεση Θέματος</button>
+                    </form>
+                    <div id="assignment-message"></div> <!-- Εδώ θα εμφανιστεί το μήνυμα αν δεν υπάρχουν θέματα -->
+
+                </section>
+                
+
+                    <section id="assignment-actions">
+                        <h2>Προσωρινή Ανάθεση</h2>
+                        <p id="temporary-assignment-message">Το θέμα έχει ανατεθεί προσωρινά. Περιμένετε έγκριση από τα άλλα μέλη της επιτροπής.</p>
+                        <button onclick="cancelAssignment()">Ακύρωση Ανάθεσης</button>
+                        <p id="cancel-message"></p>
+                    </section>
+                    
+                    
+            </main>
+            </div>
+
+            
+
+            <div id="status" class="tab-content">
+                <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
+                    <button onclick="filterTheses('under_assignment')">Υπό Ανάθεση</button>
+                    <button onclick="filterTheses('active')">Ενεργή</button>
+                    <button onclick="filterTheses('under_review')">Ολοκληρωμένη</button>
+                    <button onclick="filterTheses('cancelled')">Ακυρωμένη</button>
+                </div>
+                
+                
+                <div id="thesis-container">
+                    <!-- Εδώ θα φορτωθούν οι διπλωματικές -->
+                </div>
+                <div id="details-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid #ccc; z-index: 1000;">
+                    <button onclick="closeModal()">Κλείσιμο</button>
+                    <div id="modal-content">
+                        <!-- Εδώ θα φορτωθούν οι λεπτομέρειες -->
+                    </div>
+                </div>
+                <div id="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;" onclick="closeModal()"></div>
+            </div>
+
+            
+
+
+        <div id="viewTheses" class="tab-content">
+            <h2>Προβολή Διπλωματικών</h2>
+            <table border="1" cellpadding="10" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Τίτλος Θέματος</th>
+                        <th>Σύνοψη</th>
+                        <th>Αρχείο PDF</th>
+                        <th>Ενέργειες</th> <!-- Στήλη για ενέργειες (π.χ. επεξεργασία) -->
+                    </tr>
+                </thead>
+                <tbody id="thesisTableBody">
+                    <!-- Οι γραμμές θα προστεθούν εδώ μέσω JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+       <div id="editForm" style="display:none;">
+    <h3>Επεξεργασία Θέματος</h3>
+    <form>
+        <label for="thesisTitle">Τίτλος Θέματος</label>
+        <input type="text" id="thesisTitle" name="thesisTitle" required>
+        
+        <label for="thesisDescription">Σύνοψη</label>
+        <textarea id="thesisDescription" name="thesisDescription"></textarea>
+        
+        <label for="thesisPdf">Αρχείο PDF</label>
+        <input type="text" id="thesisPdf" name="thesisPdf">
+        
+        <input type="hidden" id="thesisId" name="thesisId">
+        <button type="button" id="saveChanges">Αποθήκευση Αλλαγών</button>
+        <button type="button" id="cancelChanges">Ακύρωση</button>
+    </form>
+</div>
+        
+        
+        <footer>© 2024 e-diploma - Όλα τα δικαιώματα διατηρούνται.</footer>
+
+        <div id="management" class="tab-content">
+            <div>
+                <h1>Λίστα Διπλωματικών</h1>
+                <label for="status_filter">Κατάσταση:</label>
+                <select id="status_filter">
+                    <option value="">Όλες</option>
+                    <option value="under_assignment">Υπό Ανάθεση</option>
+                    <option value="active">Ενεργή</option>
+                    <option value="under_review">Υπό Εξέταση</option>
+                </select>
+            
+                <label for="role_filter">Ρόλος:</label>
+                <select id="role_filter">
+                    <option value="">Όλοι</option>
+                    <option value="supervisor">Επιβλέπων</option>
+                    <option value="committee_member">Μέλος Τριμελούς</option>
+                </select>
+            
+                <button onclick="fetchTheses()">Φιλτράρισμα</button>
+            </div>
+            
+            <div id="theses-list"></div>
+
+                
+            <!-- Σύνδεσμος για εξαγωγή -->
+            <div class="export">
+                <button onclick="exportData('csv')">Εξαγωγή σε CSV</button>
+                <button onclick="exportData('json')">Εξαγωγή σε JSON</button>
+            </div>
+        </div>
+    
+        <!-- Modal για λεπτομέρειες διπλωματικής -->
+        <div id="thesisDetailsModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2 class="title"></h2>
+                <p class="description"></p>
+                <p><strong>Φοιτητής:</strong> <span class="student"></span></p>
+                <p><strong>Τριμελής Επιτροπή:</strong> <span class="committee"></span></p>
+                <p><strong>Κατάσταση:</strong> <span class="status"></span></p>
+                <button onclick="closeModal()">Κλείσιμο</button>
+            </div>
+        </div>
+     
+        
+        <div id="invitations" class="tab-content">
+            
+            <div class="container">
+                <h2>Προσκλήσεις Συμμετοχής σε Τριμελή Επιτροπή</h2>
+            
+                <!-- Πίνακας με Προσκλήσεις -->
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Θέμα Διπλωματικής</th>
+                            <th>Φοιτητής</th>
+                            <th>Αριθμός Μητρώου</th>
+                            <th>Ενέργειες</th>
+                        </tr>
+                    </thead>
+                    <tbody id="committee-requests-list">
+                        <!-- Οι προσκλήσεις θα φορτώνονται εδώ δυναμικά -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        <div id="statistics" class="tab-content">
+            
+            <h2>Στατιστικά Διδασκόντων</h2>
+            
+            <div id="supervision-statistics">
+                <h3>Στατιστικά για τις διπλωματικές που έχει επιβλέψει</h3>
+                <canvas id="supervision-chart"></canvas>
+            </div>
+    
+            <div id="committee-statistics">
+                <h3>Στατιστικά για τις διπλωματικές όπου είναι μέλος τριμελούς</h3>
+                <canvas id="committee-chart"></canvas>
+            </div>
+        
+         
+            
+        
+        </div>
+    
+    
+
+
+      </body>
+      
+    
+    
+  
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="http://localhost/web-project/pages/script-prof.js"></script>
+
+
+
+
+
+
+</body>
+</body>
+</html>
