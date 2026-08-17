@@ -1,0 +1,120 @@
+CREATE DATABASE WEB;
+USE WEB;
+
+CREATE TABLE students(
+student_number int(11) DEFAULT '0' NOT NULL,
+name VARCHAR(35) DEFAULT 'unknown' NOT NULL,
+surname VARCHAR(35) DEFAULT 'unknown' not null,
+street VARCHAR(15) DEFAULT 'unknown' NOT NULL,
+num INT(11) DEFAULT '0' NOT NULL,
+postcode int(11) default '0'not null,
+city VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+father_name VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+mobile_tel VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+landline_tel VARCHAR(10) DEFAULT 'unknown' NOT NULL,
+email VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+password VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+PRIMARY KEY(student_number)
+)engine=InnoDB;
+
+CREATE TABLE professor(
+name VARCHAR(35) DEFAULT 'unknown' NOT NULL,
+surname VARCHAR(35) DEFAULT 'unknown' not null,
+email VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+topic VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+department VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+university VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+mobile_tel VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+landline_tel VARCHAR(10) DEFAULT 'unknown' NOT NULL,
+password VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+PRIMARY KEY(email)
+)engine=InnoDB;
+
+CREATE TABLE secretariat(
+name VARCHAR(35) DEFAULT 'unknown' NOT NULL,
+mobile_tel VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+landline_tel VARCHAR(10) DEFAULT 'unknown' NOT NULL,
+email VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+password VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+PRIMARY KEY(email)
+)engine=InnoDB;
+
+CREATE TABLE thesis(
+topic VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+professor VARCHAR(35) default 'unknown' NOT NULL,
+text text not null,
+link VARCHAR(60) default 'unknown' not null,
+status enum('under_assignment','complete','finalized','canceled','active'),
+PRIMARY KEY(topic),
+constraint prof foreign key(professor) references professor(email) 
+on delete cascade on update cascade
+);
+
+CREATE TABLE committee(
+topic VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+professor VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+role enum('main_professor','commitee1','committee2'),
+PRIMARY KEY(topic,professor),
+constraint profe foreign key(professor) references professor(email)
+on delete cascade on update cascade,
+constraint topi foreign key(topic) references thesis(topic)
+on delete cascade on update cascade
+);
+
+CREATE TABLE degrees(
+topic  VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+professor  VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+comment text not null,
+greade int(11) DEFAULT '0' NOT NULL,
+PRIMARY KEY(topic,professor),
+constraint profes foreign key(professor) references professor(email) 
+on delete cascade on update cascade,
+constraint topic foreign key(topic) references thesis(topic)
+on delete cascade on update cascade
+);
+
+CREATE TABLE thesis_logs(
+topic  VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+student_number int(11) DEFAULT '0' NOT NULL,
+status enum('under_assignment','complete','finalized','canceled','active'),
+start_date DATETIME NOT NULL,
+final_date DATETIME NOT NULL,
+presentetion_date DATETIME NOT NULL,
+total_greade int(11) default '0',
+PRIMARY KEY (topic,student_number),
+constraint topiic foreign key(topic) references thesis(topic)
+on delete cascade on update cascade,
+constraint stn foreign key(student_number) references students(student_number)
+on delete cascade on update cascade
+);
+
+
+CREATE INDEX degree_idx on degrees(professor);
+
+edo me mia store procedure tha dhmioyrgv ton pinaka prosorina gia na ypologizv ton m;eso oro kai select otan tha thelo mia pliroforia.
+CREATE TABLE greades(
+topic VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+main_professor VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+mp_greade int(11) DEFAULT '0' NOT NULL,
+commitee1 VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+c1_greade int(11) DEFAULT '0' NOT NULL,
+committee2 VARCHAR(45) DEFAULT 'unknown' NOT NULL,
+c2_greade int(11) DEFAULT '0' NOT NULL,
+total_greade int(11) DEFAULT '0' NOT NULL,
+PRIMARY KEY (topic),
+constraint mprofes foreign key(main_professor) references professor(email) 
+on delete cascade on update cascade,
+constraint com1 foreign key(commitee1) references degrees(professor)
+on delete cascade on update cascade,
+constraint com2 foreign key(committee2) references degrees(professor)
+on delete cascade on update cascade,
+constraint c1greade foreign key(c1_greade) references degrees(greade) 
+on delete cascade on update cascade,
+constraint c2greade foreign key(c2_greade) references degrees(greade)
+on delete cascade on update cascade,
+constraint mpgreade foreign key(mp_greade) references degrees(greade) 
+on delete cascade on update cascade,
+constraint topicc foreign key(topic) references thesis(topic)
+on delete cascade on update cascade
+);
+ 
